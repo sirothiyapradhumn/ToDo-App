@@ -26,6 +26,17 @@ export default class Todo extends Component {
         })
     }
 
+    handelDelete = (id) =>{
+        let narr = [];
+        narr = this.state.tasks.filter((taskObj)=>{
+            return taskObj.id != id;
+        })
+
+        this.setState({
+            tasks: [...narr]
+        })
+    }
+
   render() {
     //console.log("render method call");
     return (//jsx start
@@ -38,7 +49,7 @@ export default class Todo extends Component {
                 return(
                     <li key={taskObj.id}>
                         <p>{taskObj.task}</p>
-                        <button>Delete</button>
+                        <button onClick={()=>{this.handelDelete(taskObj.id)}}>Delete</button>
                     </li>
                 )
             })
